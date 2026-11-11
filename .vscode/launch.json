@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Project Pulse Dashboard",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "Serve Project Pulse",
+      "serverReadyAction": {
+        "pattern": "Serving HTTP on .* port ([0-9]+)",
+        "action": "openExternalURL",
+        "uriFormat": "http://localhost:%s/index.html"
+      }
+    }
+  ]
+}

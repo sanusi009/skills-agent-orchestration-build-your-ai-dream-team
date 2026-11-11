@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project Pulse - Contributor dashboard tracking project health, ownership, recent activity, and priorities.">
+  <title>Project Pulse</title>
+
+  <!-- Stylesheet Reference -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Project Data Reference -->
+  <link rel="preload" href="project-data.json" as="fetch" crossorigin="anonymous">
+  <link rel="alternate" type="application/json" href="project-data.json" title="Project Pulse Data">
+</head>
+<body>
+  <!-- Header Landmark -->
+  <header class="dashboard-header" role="banner">
+    <div class="header-container">
+      <div class="header-branding">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="header-titles">
+          <h1 class="dashboard-title">Project Pulse</h1>
+          <p class="dashboard-subtitle">Team initiatives, contributor health, and recent progress</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="live-indicator" aria-label="Dashboard status: Live monitoring">
+          <span class="live-pulse" aria-hidden="true"></span>
+          Live Monitoring
+        </span>
+        <a href="project-data.json" class="data-link" aria-label="View raw project-data.json data source" target="_blank" rel="noopener">
+          <span class="data-link-icon" aria-hidden="true">&lcub;&rcub;</span>
+          <span>project-data.json</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main class="dashboard" id="main-content" role="main">
+    <!-- Summary Stats & Controls -->
+    <section class="dashboard-controls" aria-label="Dashboard controls and summary">
+      <!-- Status Summary Metric Cards -->
+      <div id="summary-stats" class="summary-stats" role="region" aria-label="Project summary statistics">
+        <div class="stat-card stat-card--total">
+          <span class="stat-label">Total Projects</span>
+          <span class="stat-value" id="stat-total">5</span>
+        </div>
+        <div class="stat-card stat-card--active">
+          <span class="stat-label">Active</span>
+          <span class="stat-value" id="stat-active">1</span>
+        </div>
+        <div class="stat-card stat-card--in-progress">
+          <span class="stat-label">In Progress</span>
+          <span class="stat-value" id="stat-in-progress">1</span>
+        </div>
+        <div class="stat-card stat-card--review">
+          <span class="stat-label">Under Review</span>
+          <span class="stat-value" id="stat-review">1</span>
+        </div>
+        <div class="stat-card stat-card--completed">
+          <span class="stat-label">Completed</span>
+          <span class="stat-value" id="stat-completed">1</span>
+        </div>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <div class="controls-toolbar">
+        <div class="filter-group">
+          <label for="status-filter" class="filter-label">Filter by status:</label>
+          <select id="status-filter" class="status-filter" aria-controls="project-grid">
+            <option value="all">All Statuses</option>
+            <option value="Active">Active</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Under Review">Under Review</option>
+            <option value="On Hold">On Hold</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div class="view-meta">
+          <span class="project-count" id="project-count" aria-live="polite">Showing 5 projects</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Error Message Banner (Placeholder) -->
+    <div id="error-message" class="error-banner" role="alert" aria-live="assertive" hidden>
+      <span class="error-icon" aria-hidden="true">⚠️</span>
+      <div class="error-content">
+        <strong class="error-title">Unable to load project data</strong>
+        <p class="error-description">There was a problem reading project-data.json. Please check that the file exists and is formatted properly.</p>
+      </div>
+    </div>
+
+    <!-- Live Region for Screen Readers -->
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true">
+      Project Pulse dashboard loaded with 5 projects.
+    </div>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-section" aria-labelledby="projects-heading">
+      <div class="section-header">
+        <h2 id="projects-heading" class="section-title">Projects</h2>
+      </div>
+
+      <!-- Project Cards Grid Container -->
+      <div id="project-grid" class="project-grid" aria-live="polite" aria-relevant="additions removals">
+
+        <!-- Project Card 1: Active / High Priority -->
+        <article class="project-card" data-status="Active" data-priority="High">
+          <header class="card-header">
+            <div class="card-heading">
+              <h3 class="card-title">Cloud Infrastructure Migration</h3>
+              <p class="card-owner"><span class="owner-label">Owner:</span> <span class="owner-name">Mona Sans</span></p>
+            </div>
+            <div class="card-badges" aria-label="Status and priority">
+              <span class="badge badge--active" data-field="status">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="sr-only">Status:</span>
+                Active
+              </span>
+              <span class="badge priority-badge priority--high" data-field="priority">
+                <span class="sr-only">Priority:</span>
+                High Priority
+              </span>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p class="card-summary">Migrating core platform services and databases to modern containerized cloud infrastructure to improve scalability and uptime.</p>
+          </div>
+
+          <footer class="card-footer">
+            <div class="card-activity" data-field="recentActivity">
+              <span class="activity-label">Recent Activity:</span>
+              <p class="activity-text">Completed staging cluster deployment and verified network security policies across all regions.</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Project Card 2: In Progress / Medium Priority -->
+        <article class="project-card" data-status="In Progress" data-priority="Medium">
+          <header class="card-header">
+            <div class="card-heading">
+              <h3 class="card-title">Developer Documentation Portal</h3>
+              <p class="card-owner"><span class="owner-label">Owner:</span> <span class="owner-name">Alex Chen</span></p>
+            </div>
+            <div class="card-badges" aria-label="Status and priority">
+              <span class="badge badge--in-progress" data-field="status">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="sr-only">Status:</span>
+                In Progress
+              </span>
+              <span class="badge priority-badge priority--medium" data-field="priority">
+                <span class="sr-only">Priority:</span>
+                Medium Priority
+              </span>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p class="card-summary">Overhauling contributor onboarding, API reference manuals, and interactive code guides for open-source contributors.</p>
+          </div>
+
+          <footer class="card-footer">
+            <div class="card-activity" data-field="recentActivity">
+              <span class="activity-label">Recent Activity:</span>
+              <p class="activity-text">Added interactive API code samples and updated getting started guides for new contributors.</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Project Card 3: Under Review / High Priority -->
+        <article class="project-card" data-status="Under Review" data-priority="High">
+          <header class="card-header">
+            <div class="card-heading">
+              <h3 class="card-title">Security &amp; Compliance Audit</h3>
+              <p class="card-owner"><span class="owner-label">Owner:</span> <span class="owner-name">Taylor Kim</span></p>
+            </div>
+            <div class="card-badges" aria-label="Status and priority">
+              <span class="badge badge--review" data-field="status">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="sr-only">Status:</span>
+                Under Review
+              </span>
+              <span class="badge priority-badge priority--high" data-field="priority">
+                <span class="sr-only">Priority:</span>
+                High Priority
+              </span>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p class="card-summary">Annual SOC2 compliance review, third-party penetration testing, and automated vulnerability scanning pipeline integration.</p>
+          </div>
+
+          <footer class="card-footer">
+            <div class="card-activity" data-field="recentActivity">
+              <span class="activity-label">Recent Activity:</span>
+              <p class="activity-text">Submitted third-party penetration testing report for remediation review and risk assessment.</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Project Card 4: Completed / Low Priority -->
+        <article class="project-card" data-status="Completed" data-priority="Low">
+          <header class="card-header">
+            <div class="card-heading">
+              <h3 class="card-title">Design System Component Library</h3>
+              <p class="card-owner"><span class="owner-label">Owner:</span> <span class="owner-name">Jordan Lee</span></p>
+            </div>
+            <div class="card-badges" aria-label="Status and priority">
+              <span class="badge badge--completed" data-field="status">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="sr-only">Status:</span>
+                Completed
+              </span>
+              <span class="badge priority-badge priority--low" data-field="priority">
+                <span class="sr-only">Priority:</span>
+                Low Priority
+              </span>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p class="card-summary">Unified design tokens, accessible UI components, and theme support across mobile and web interfaces.</p>
+          </div>
+
+          <footer class="card-footer">
+            <div class="card-activity" data-field="recentActivity">
+              <span class="activity-label">Recent Activity:</span>
+              <p class="activity-text">Published version 2.4 with updated accessible color tokens and component documentation.</p>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Project Card 5: On Hold / Medium Priority -->
+        <article class="project-card" data-status="On Hold" data-priority="Medium">
+          <header class="card-header">
+            <div class="card-heading">
+              <h3 class="card-title">Mobile Notification Engine</h3>
+              <p class="card-owner"><span class="owner-label">Owner:</span> <span class="owner-name">Sam Rivera</span></p>
+            </div>
+            <div class="card-badges" aria-label="Status and priority">
+              <span class="badge badge--on-hold" data-field="status">
+                <span class="badge-dot" aria-hidden="true"></span>
+                <span class="sr-only">Status:</span>
+                On Hold
+              </span>
+              <span class="badge priority-badge priority--medium" data-field="priority">
+                <span class="sr-only">Priority:</span>
+                Medium Priority
+              </span>
+            </div>
+          </header>
+
+          <div class="card-body">
+            <p class="card-summary">Real-time push notification delivery service supporting user segmentation, preferences, and automated digest emails.</p>
+          </div>
+
+          <footer class="card-footer">
+            <div class="card-activity" data-field="recentActivity">
+              <span class="activity-label">Recent Activity:</span>
+              <p class="activity-text">Paused pending backend microservices architecture finalization and schema agreement.</p>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+
+      <!-- Empty State Fallback (Hidden by default) -->
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-state-icon" aria-hidden="true">📂</div>
+        <h3 class="empty-state-title">No projects found</h3>
+        <p class="empty-state-desc">No initiatives match your selected status filter. Select "All Statuses" to view all active work.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer class="dashboard-footer" role="contentinfo">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Project Pulse &bull; Team Contributor Dashboard</p>
+      <div class="footer-links">
+        <a href="project-data.json" class="footer-link">Source: project-data.json</a>
+        <a href="#main-content" class="footer-link">Back to top</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

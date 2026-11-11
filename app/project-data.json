@@ -1,0 +1,74 @@
+{
+  "projects": [
+    {
+      "id": "pulse-001",
+      "name": "Customer Insights Portal",
+      "owner": "Maya Chen",
+      "status": "Active",
+      "recentActivity": "Updated 2 days ago",
+      "priority": "High",
+      "summary": "Unifies customer feedback and support trends in a self-service analytics portal.",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "pulse-002",
+      "name": "Warehouse Inventory Modernization",
+      "owner": "Jordan Patel",
+      "status": "At Risk",
+      "recentActivity": "Updated yesterday",
+      "priority": "High",
+      "summary": "Replaces spreadsheet-based stock tracking with real-time inventory visibility across three warehouses.",
+      "lastUpdated": "2026-11-10"
+    },
+    {
+      "id": "pulse-003",
+      "name": "Mobile Checkout Refresh",
+      "owner": "Elena Rivera",
+      "status": "Blocked",
+      "recentActivity": "Updated 4 days ago",
+      "priority": "Medium",
+      "summary": "Streamlines mobile checkout; payment-provider sandbox access is pending.",
+      "lastUpdated": "2026-11-07"
+    },
+    {
+      "id": "pulse-004",
+      "name": "Employee Learning Hub",
+      "owner": "Noah Williams",
+      "status": "On Hold",
+      "recentActivity": "Updated 1 week ago",
+      "priority": "Low",
+      "summary": "Creates a searchable home for internal training, onboarding guides, and role-based learning paths.",
+      "lastUpdated": "2026-11-04"
+    },
+    {
+      "id": "pulse-005",
+      "name": "Cloud Cost Optimization",
+      "owner": "Priya Nair",
+      "status": "Active",
+      "recentActivity": "Updated today",
+      "priority": "Medium",
+      "summary": "Adds usage dashboards and budget alerts to reduce avoidable cloud spend.",
+      "lastUpdated": "2026-11-11"
+    },
+    {
+      "id": "pulse-006",
+      "name": "Vendor Data Migration",
+      "owner": "Marcus Lee",
+      "status": "Completed",
+      "recentActivity": "Completed 3 days ago",
+      "priority": "Low",
+      "summary": "Migrated approved vendor records to the new procurement platform and verified key fields.",
+      "lastUpdated": "2026-11-08"
+    },
+    {
+      "id": "pulse-007",
+      "name": "Regional Delivery Forecasting",
+      "owner": "Sofia Andersson",
+      "status": "At Risk",
+      "recentActivity": "Updated 3 days ago",
+      "priority": "High",
+      "summary": "Improves delivery estimates by combining route history, weather, and carrier performance data.",
+      "lastUpdated": "2026-11-08"
+    }
+  ]
+}
